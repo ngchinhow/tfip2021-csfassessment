@@ -1,0 +1,4 @@
+<div *ngFor="let r of recipes" (click)="showDetails(r)">
+  {{ r.title }}
+</div>
+<button type="button" routerLink="/add">Add</button>
