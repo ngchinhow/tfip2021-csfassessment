@@ -4,11 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
-import jakarta.json.Json;
-import jakarta.json.JsonArrayBuilder;
-import jakarta.json.JsonObject;
-import jakarta.json.JsonObjectBuilder;
-
 /*
  * IMPORTANT: Do not change this class
  */
@@ -39,22 +34,8 @@ public class Recipe {
 	public List<String> getIngredients() { return this.ingredients; }
 	public void addIngredient(String ingredient) { this.ingredients.add(ingredient); }
 
-	public JsonObject toJson() {
-        JsonObjectBuilder recipeBuilder = Json.createObjectBuilder();
-		JsonArrayBuilder ingredientsBuilder = Json.createArrayBuilder();
-        recipeBuilder.add("id", this.getId());
-        recipeBuilder.add("title", this.getTitle());
-        recipeBuilder.add("image", this.getImage());
-        recipeBuilder.add("instruction", this.getInstruction());
-		this.getIngredients()
-			.forEach(i -> ingredientsBuilder.add(i));
-		recipeBuilder.add("ingredients", ingredientsBuilder);
-        return recipeBuilder.build();
-    }
-	
 	@Override
 	public String toString() {
-		return this.toJson().toString();
+		return "Id: %s, Title: %s".formatted(this.id, this.title);
 	}
 }
-

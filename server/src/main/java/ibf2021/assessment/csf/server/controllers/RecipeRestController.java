@@ -16,8 +16,11 @@ import org.springframework.web.server.ResponseStatusException;
 
 import ibf2021.assessment.csf.server.models.Recipe;
 import ibf2021.assessment.csf.server.services.RecipeService;
+import jakarta.json.Json;
+import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonObjectBuilder;
 
-/* Write your request hander in this file */
+/* Write your request hander in recipe file */
 @RestController
 @RequestMapping(path = "/api")
 public class RecipeRestController {
@@ -41,7 +44,7 @@ public class RecipeRestController {
             );
         }
         return new ResponseEntity<String>(
-            recipe.toString(),
+            recipeToString(recipe),
             HttpStatus.OK
         );
     }
@@ -55,8 +58,21 @@ public class RecipeRestController {
         logger.info(recipe.toString());
         rSvc.addRecipe(recipe);
         return new ResponseEntity<String>(
-            recipe.toString(),
+            recipeToString(recipe),
             HttpStatus.CREATED
         );
+    }
+
+    private String recipeToString(Recipe recipe) {
+        JsonObjectBuilder recipeBuilder = Json.createObjectBuilder();
+		JsonArrayBuilder ingredientsBuilder = Json.createArrayBuilder();
+		recipeBuilder.add("id", recipe.getId());
+		recipeBuilder.add("title", recipe.getTitle());
+		recipeBuilder.add("image", recipe.getImage());
+		recipeBuilder.add("instruction", recipe.getInstruction());
+        recipe.getIngredients()
+            .forEach(i -> ingredientsBuilder.add(i));        
+        recipeBuilder.add("ingredients", ingredientsBuilder);
+        return recipeBuilder.build().toString();
     }
 }
