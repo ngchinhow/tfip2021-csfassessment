@@ -1,4 +1,19 @@
-<div *ngFor="let r of recipes" (click)="showDetails(r)">
-  {{ r.title }}
-</div>
-<button type="button" routerLink="/add">Add</button>
+<mat-card>
+  <mat-card-header>
+    <h1>My Recipes</h1>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let r of recipes" (click)="showDetails(r)">
+        <p>{{ r.title }}</p>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button routerLink="/add">Add</button>
+  </mat-card-actions>
+</mat-card>
+
+

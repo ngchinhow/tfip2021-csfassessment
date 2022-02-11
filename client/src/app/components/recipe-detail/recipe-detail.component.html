@@ -1,11 +1,19 @@
-<h1>{{ recipe.title }}</h1>
-<img [src]="recipe.image" [alt]="'Image of ' + recipe.title">
-<h2>Ingredients</h2>
-<ol>
-  <li *ngFor="let i of recipe.ingredients">
-    {{ i }}
-  </li>
-</ol>
-<h2>Instruction</h2>
-<p>{{ recipe.instruction }}</p>
-<button type="button" routerLink="/">Back</button>
+<mat-card>
+  <mat-card-header>
+    <h1>{{ recipe.title }}</h1>
+  </mat-card-header>
+  <img mat-card-image [src]="recipe.image" [alt]="'Image of ' + recipe.title">
+  <mat-card-content>
+    <h2>Ingredients</h2>
+    <mat-list>
+      <mat-list-item *ngFor="let i of recipe.ingredients">
+        <p>{{ i }}</p>
+      </mat-list-item>
+    </mat-list>
+    <h2>Instruction</h2>
+    <p>{{ recipe.instruction }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button type="button" routerLink="/">Back</button>
+  </mat-card-actions>
+</mat-card>

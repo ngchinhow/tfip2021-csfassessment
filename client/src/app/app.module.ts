@@ -12,6 +12,12 @@ import { RouterModule } from '@angular/router';
 import { ServerService } from './services/server.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -32,7 +38,13 @@ import { environment } from '../environments/environment';
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    BrowserAnimationsModule,
+    MatListModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatFormFieldModule
   ],
   providers: [ServerService],
   bootstrap: [AppComponent]
