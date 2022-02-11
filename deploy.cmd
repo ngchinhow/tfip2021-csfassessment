@@ -27,9 +27,14 @@ IF DEFINED ARG (
 
 cd %CLIENT% && call ng build
 cd ../%SERVER%
-robocopy ../%CLIENT%/dist/%CLIENT% src/main/resources/static
+robocopy /S ../%CLIENT%/dist/%CLIENT% src/main/resources/static
 call mvn clean install
 cd ..
 git add %SERVER% && git commit -m %GIT_COMMIT_MESSAGE%
 @REM Assume that Heroku is already logged in and created
 git subtree push --prefix %SERVER% heroku %GIT_MASTER%
+
+SET CLIENT=
+SET SERVER=
+SET GIT_COMMIT_MESSAGE=
+SET GIT_MASTER=
